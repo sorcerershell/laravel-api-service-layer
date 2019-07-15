@@ -4,7 +4,8 @@
 namespace App\Services;
 
 
-use App\DataObjects\DeleteProduct;
+use App\DataTransferObjects\DeleteProduct;
+use App\DataTransferObjects\UpdateProduct;
 use App\Exceptions\ProductIdCannotBeEmptyException;
 use App\Exceptions\ProductNotExistsException;
 use App\Models\Product;
@@ -26,11 +27,11 @@ class DeleteProductService
         $this->repository = $repository;
     }
 
-    public function handle(DeleteProduct $updateProduct)
+    public function handle(DeleteProduct $deleteProduct)
     {
-        $this->validates($updateProduct);
-        $existingProduct = $this->findOrError($updateProduct);
-        $this->deleteProduct($existingProduct);
+        $this->validates($deleteProduct);
+        $existingProduct = $this->findOrError($deleteProduct);
+        $this->deleteProduct($deleteProduct);
         return $existingProduct;
     }
 
@@ -62,9 +63,9 @@ class DeleteProductService
     /**
      * @param Product|null $existingProduct
      */
-    private function deleteProduct(?Product $existingProduct): void
+    private function deleteProduct(DeleteProduct $deleteProduct): void
     {
-        $this->repository->delete($existingProduct);
+        $this->repository->delete($deleteProduct->getId());
     }
 
 

@@ -4,8 +4,8 @@
 namespace Tests\Unit\Services;
 
 
-use App\DataObjects\CreateProduct;
-use App\DataObjects\UpdateProduct;
+use App\DataTransferObjects\CreateProduct;
+use App\DataTransferObjects\UpdateProduct;
 use App\Exceptions\ProductAlreadyExistsException;
 use App\Exceptions\ProductIdCannotBeEmptyException;
 use App\Exceptions\ValidationException;

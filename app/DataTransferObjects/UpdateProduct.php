@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DataObjects;
+namespace App\DataTransferObjects;
 
 
 use Illuminate\Http\Request;
@@ -102,10 +102,10 @@ class UpdateProduct
         return $this;
     }
 
-    public static function fromRequest(Request $request)
+    public static function fromRequest(Request $request, string $id)
     {
         $updateProduct = new self();
-        $updateProduct->setId($request->_id);
+        $updateProduct->setId($id);
         $updateProduct->setName($request->name);
         $updateProduct->setPrice($request->price);
         $updateProduct->setImage($request->image);

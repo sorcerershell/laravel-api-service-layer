@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Product
@@ -20,7 +19,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
 
-    protected $fillable = ['_id', 'name', 'price', 'image'];
+    protected $fillable = [
+        '_id',
+        'name',
+        'price',
+        'image'
+    ];
+
     protected $keyType = 'string';
     protected $primaryKey = '_id';
 

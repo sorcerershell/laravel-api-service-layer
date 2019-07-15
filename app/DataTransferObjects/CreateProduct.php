@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DataObjects;
+namespace App\DataTransferObjects;
 
 
 use App\Http\Requests\CreateProductRequest;

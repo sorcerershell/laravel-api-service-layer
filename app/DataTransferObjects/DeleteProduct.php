@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DataObjects;
+namespace App\DataTransferObjects;
 
 
 use Illuminate\Http\Request;

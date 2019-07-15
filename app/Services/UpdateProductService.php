@@ -4,7 +4,7 @@
 namespace App\Services;
 
 
-use App\DataObjects\UpdateProduct;
+use App\DataTransferObjects\UpdateProduct;
 use App\Exceptions\ProductIdCannotBeEmptyException;
 use App\Exceptions\ProductNotExistsException;
 use App\Models\Product;

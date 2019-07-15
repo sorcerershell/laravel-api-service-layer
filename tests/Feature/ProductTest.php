@@ -50,7 +50,6 @@ class ProductTest extends TestCase
         $product->save();
 
         $updatedData = [
-            '_id' => $id,
             'name' => 'Product 1',
             'price' => 9000,
             'image' => 'http://s3-ap-southeast-1.amazonaws.com/s3.irvinsaltedegg.com/engineering-test/images/product-1.jpg'
@@ -74,8 +73,8 @@ class ProductTest extends TestCase
         ];
         $product = new Product($data);
         $product->save();
-
         $result = $this->api()->json('DELETE', '/api/product/' . $id);
+        var_dump($result->getContent());
         $result->assertStatus(200)
             ->assertJson([
                 'data' => [ $id ]
@@ -85,6 +84,10 @@ class ProductTest extends TestCase
     private function api() {
         $user = factory(User::class)->create();
         return $this
-            ->actingAs($user);
+            ->actingAs($user)
+//            ->withHeaders([
+//                'Authorization' => 'Bearer  ' . \Hash::make('test')
+//            ])
+        ;
     }
 }

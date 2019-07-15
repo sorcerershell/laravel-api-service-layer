@@ -4,7 +4,7 @@
 namespace Tests\Unit\Services;
 
 
-use App\DataObjects\CreateProduct;
+use App\DataTransferObjects\CreateProduct;
 use App\Exceptions\ProductAlreadyExistsException;
 use App\Exceptions\ValidationException;
 use App\Models\Product;

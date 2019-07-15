@@ -4,9 +4,9 @@
 namespace Tests\Unit\Services;
 
 
-use App\DataObjects\CreateProduct;
-use App\DataObjects\DeleteProduct;
-use App\DataObjects\UpdateProduct;
+use App\DataTransferObjects\CreateProduct;
+use App\DataTransferObjects\DeleteProduct;
+use App\DataTransferObjects\UpdateProduct;
 use App\Exceptions\ProductAlreadyExistsException;
 use App\Exceptions\ProductIdCannotBeEmptyException;
 use App\Exceptions\ProductNotExistsException;
@@ -61,7 +61,7 @@ class DeleteProductServiceTest extends TestCase
         $service->handle($deleteProduct);
     }
 
-    public function testGivenProductExistsShouldCallRepositorySave()
+    public function testGivenProductExistsShouldCallRepositoryDelete()
     {
         $id = '507f191e810c19729de860ea';
         $productRepository = $this->getMockBuilder(ProductRepositoryInterface::class)
@@ -73,10 +73,10 @@ class DeleteProductServiceTest extends TestCase
             ->withAnyParameters()
             ->willReturn(new Product(['id' => $id, 'name' => 'test', 'price' => 10000]));
 
-        /** @var UpdateProductService $service */
+        /** @var DeleteProductService $service */
         $service = $this->getService($productRepository);
 
-        $deleteProduct= DeleteProduct::make($id);
+        $deleteProduct = DeleteProduct::make($id);
         $productRepository->expects($this->atLeastOnce())->method('delete')->withAnyParameters();
         $service->handle($deleteProduct);
     }

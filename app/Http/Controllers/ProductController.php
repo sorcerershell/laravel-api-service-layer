@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DataObjects\CreateProduct;
-use App\DataObjects\DeleteProduct;
-use App\DataObjects\UpdateProduct;
+use App\DataTransferObjects\CreateProduct;
+use App\DataTransferObjects\DeleteProduct;
+use App\DataTransferObjects\UpdateProduct;
 use App\Http\Requests\CreateProductRequest;
 use App\Repositories\ProductRepositoryInterface;
 use App\Services\CreateProductService;
@@ -52,7 +52,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = $this->productRepository->findAll();
+        return $this->sendResponse($products);
     }
 
     /**
@@ -77,7 +78,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = $this->productRepository->find($id);
-        $this->sendResponse($product);
+        return $this->sendResponse($product);
     }
 
     /**
@@ -89,7 +90,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateProduct = UpdateProduct::fromRequest($request);
+        $updateProduct = UpdateProduct::fromRequest($request, $id);
         $product = $this->updateProductService->handle($updateProduct);
         return $this->sendResponse($product);
     }
